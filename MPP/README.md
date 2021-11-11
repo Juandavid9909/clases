@@ -57,8 +57,8 @@ Tiene que ver con cuándo crear o cuándo aparece un nuevo paradigma. Si estamos
 | Cálculos sencillos   | Permite imprimir los resultados de las operaciones en una nueva ventana |```{Browse 9999*9999} O {Browse {Fact 5}}```
 | Variables declarativas | Declarar nuevas variables |```declare v = 9999 * 9999```
 | Funciones | Bloques de código reutilizables |```declare fun {Fact N} if N==0 then 1 else N*{Fact N-1} end end```
-| Datos estructurados (listas) | Estructura de datos que nos permite almacenar muchos datos dentro de ella |```[5 6 7 8] o nil, H=5 T=[6 7 8] {Browse H or symbol T}```
-| Descomposición de listas | Descomponer listas creadas |```declare L=[5 6 7 8] case L of H or symbol T then {Browse H} {Browse T} end```
+| Datos estructurados (listas) | Estructura de datos que nos permite almacenar muchos datos dentro de ella |```[5 6 7 8] o nil, H=5 T=[6 7 8] {Browse H (or symbol) T}```
+| Descomposición de listas | Descomponer listas creadas |```declare L=[5 6 7 8] case L of H (or symbol) T then {Browse H} {Browse T} end```
 
 
 - **Variables declarativas:** Una vez una variable obtiene un valor siempre será el mismo, aunque pueda ser diferente en cada computación el valor será el mismo durante la actual computación
