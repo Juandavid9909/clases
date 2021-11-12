@@ -54,10 +54,33 @@ Consiste de aquellos problemas que se resuelven en tiempo polinomial con una má
 Es aquella cuyos problemas son verificables en tiempo polinomial, lo que significa que dada una solución y un certificado de tamaño polinomial, entonces, es posible verificar, en tiempo polinomial respecto al tamaño de la entrada, que la solución es correcta.
 
 ## Clase NPC
-Son aquellos problemas que:
+Todos los problemas NPC son NP y NP-Hard. Son aquellos problemas que:
 - **NO** han podido ser solucionados en tiempo polinomial por una máquina determinista.
 - **SI** pueden ser solucionados en tiempo polinomial por una máquina no determinista.
 - **Todo problema en NPC** puede ser solucionado a través de ellos.
 
 ### La clase NPC y su atractivo
 Si un problema NPC puede ser solucionado en tiempo polinomial, entonces todos los problemas NPC pueden también ser resueltos en tiempo polinomial.
+
+## Reducción
+Es un algoritmo que convierte instancias de un problema A a instancias de un problema B, donde las instancias positivas de A sigan siendo instancias positivas de B, al igual que con instancias negativas.
+
+Para mostrar que un problema es tan difícil como otro se usa este concepto, teniendo en cuenta que reducción es un procedimiento que transforma en tiempo polinomial cualquier instancia $\alpha$ de un problema A a una instancia $\beta$ del problema B, y que permite dar la solución al problema A de forma correcta.
+
+# Problema de satisfactibilidad (SAT)
+El problema de satisfactibilidad booleana es el primer problema demostrado NP completo. SAT es NP y cualquier problema NP puede ser reducido a SAT en tiempo polinomial.
+
+El problema consiste en un conjunto V de n variables booleanas ```v1, v2, v3...vn``` y un conjunto C de m clausulas ```c1, c2, c3...cm``` en forma normal conjuntiva (FNC). Se busca si existen valores de las variables que hagan que la expresión sea verdadera (es decir, satisfactible).
+
+## 3SAT
+Es una colección de C cláusulas en forma normal conjuntiva (FNC) donde cada cláusula contiene exactamente 3 literales. Para probar que 3SAT es NPC:
+- Probar que 3SAT $\in$ NP.
+- Probar que 3SAT $\in$ NP-Hard.
+
+### 3SAT $\in$ NP
+- Dada una instancia positiva de 3SAT y el certificado, sólo se debe chequear cada cláusula para evaluar que se satisfaga. La verificación se puede hacer en tiempo polinomial $3*|C|$ equivalente a $O(|C|)$.
+- Dada una instancia negativa de 3SAT, ningún certificado puede hacer que el algoritmo verifique la instancia.
+
+## 3SAT $\in$ NP-Hard
+- Se procede a realizar una reducción desde SAT. Nótese que 3SAT es un problema más restringido que SAT, y se debe describir un algoritmo que transforme cada instancia de SAT a 3SAT en tiempo polinomial SAT $\prec_p$ 3SAT.
+- Transformar cada cláusula de una instancia de SAT en un conjunto de cláusulas de 3 - SAT (lógicamente equivalentes).
