@@ -66,3 +66,28 @@ Los precios bajan debido a algún impacto como puede ser el COVID-19.
 ## Tasa de cambio
 ### Mercados cambiarios
 Dólares que llegan y se van del país producto de las exportaciones
+
+# Nomenclatura de los flujos
+- **Presente o pasado** $P_i =$ flujo de efectivo que se da en el presente o en el pasado con respecto a un observador. En los diagramas de flujo las flechas hacia arriba indican ingresos y las flechas hacia abajo egresos.
+- **Futuro** $F_j =$ flujo de efectivo que se da en el futuro con respecto al observador.
+- **Anualidad** $A_{n_1-n_2} =$ flujos de efectivo consecutivos uniformes (todos con la misma cantidad). La anualidad inicia en el periodo $n_1$ y termina en el período $n_2$. Sin embargo, el primer flujo de la anualidad se da un período posterior a donde inicia la mensualidad.
+- **Gradiente aritmético** $(B, G)_{n_1-n_2}$ flujos de efectivo consecutivos que crecen/decrecen en una misma magnitud **G** cada período. El gradiente aritmético inicia en un período $n_1$ y termina en un período $n_2$. Sin embargo la base **B**, que es el primer flujo del gradiente, se da en un período posterior a donde inicia el gradiente aritmético. La diferencia entre $n_2$ y $n_1$ da el número de flujos.
+- **Gradiente geométrico** $(T, s)_{n_1-n_2}$ flujos de efectivo consecutivos que crecen/decrecen en un mismo porcentaje **s** cada período. El gradiente inicia en el período $n_1$ y termina en el período $n_2$. Sin embargo, la base **T**, que es el primer flujo del gradiente, se da en un período posterior a donde inicia el gradiente geométrico.
+
+# Equivalencias
+
+## Interés
+El interés I, es la compensación que reciben los individuos, firmas o personas naturales, por el sacrificio en que incurren al ahorrar una suma P.
+
+- El interés en cantidad monetaria es la diferencia entre la cantidad de dinero pagado (recibido) al final menos la cantidad de dinero recibido (pagado) al inicio:
+$$I = monto final - monto inicial$$
+
+- Este fenómeno económico real, se mite con la **tasa de interés i**, la cual a su vez, se representa por un porcentaje. Este porcentaje se calcula dividiendo el interés **I** recibido o pagado por un período, por el monto inicial **P**; de modo que la tasa de interés será:
+$$i = \frac{I}{P}$$
+
+## Interés simple vs interés compuesto
+- **Interés simple:** El interés para cada período se calcula con base únicamente sobre el valor del monto inicial:
+$$I_t = P * i$$
+
+- **Interés compuesto:** El interés para cada período se calcula sobre el monto inicial más el monto total del interés acumulado en todos los períodos anteriores:
+$$I_t = (P + \sum_{j=1}^{j=t-1}I_j) * i$$
