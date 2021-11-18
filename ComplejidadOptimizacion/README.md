@@ -44,6 +44,7 @@ Esta ejecuta un solo paso ante la lectura de un símbolo de entrada. Este es un 
 Ejecuta la mejor acción posible ante la lectura de un símbolo de entrada. Ante una posible ramificación puede explorar todas las bifurcaciones a la vez.
 
 # Clasificación de problemas
+
 ## Clase P
 La clase P corresponde a los problemas que se resuelven en tiempo polinomial con una máquina de Turing determinista.
 
@@ -84,3 +85,51 @@ Es una colección de C cláusulas en forma normal conjuntiva (FNC) donde cada cl
 ## 3SAT $\in$ NP-Hard
 - Se procede a realizar una reducción desde SAT. Nótese que 3SAT es un problema más restringido que SAT, y se debe describir un algoritmo que transforme cada instancia de SAT a 3SAT en tiempo polinomial SAT $\prec_p$ 3SAT.
 - Transformar cada cláusula de una instancia de SAT en un conjunto de cláusulas de 3 - SAT (lógicamente equivalentes).
+
+## Demostración de NPC de programación entera (IP)
+- **Instancia:** Un conjunto $v$ de variables enteras, un conjunto de desigualdades sobre las variables, una función $f(v)$ para maximizar y un entero $B$.
+
+**Ejemplo programación entera:**
+$$v_1 \geq 1, v_2 \geq 0$$
+$$v_1 + v_2 \leq 3$$
+$$f(v) = 2v_2, B = 3 => f(v) \geq B$$
+
+### Instancia positiva o negativa
+Un problema de decisión dada una instancia o es positiva o es una instancia negativa, no puede ser ambas. Por otra parte si alguna combinación de valores cumple con todas las condiciones es una instancia positiva, de lo contrario es instancia negativa.
+
+Para probar que la programación entera es NPC se necesita:
+- (Ser NP) Probar que _IP_ $\in$ _NP_.
+- (Ser NP-Hard) Probar que _IP_ $\in$ _NP - Hard_.
+	- Seleccionar un problema NPC A conocido.
+	- Describir un algoritmo que transforme cada instancia de A a una instancia de IP. Esto es A $\prec_p$ IP.
+	- Probar que el algoritmo anterior corre en tiempo polinomial y que la nueva instancia es de tamaño polinomial.
+	- Probar que el algoritmo es correcto.
+
+## ¿Está IP en NP?
+La clase NP es aquella cuyos problemas son verificables en tiempo polinomial.
+
+Dada una instancia positiva de IP y el certificado $v$, sólo se debe verificar que cada desigualdad se cumpla y que $f(v) \geq B$. Esto se puede hacer en tiempo $O(mn)$ donde $m$ es el número de desigualdades y $n$ el número de variables.
+
+Dada una instancia negativa de IP ningún certificado puede hacer que el algoritmo verifique la instancia, por tanto _IP_ $\in$ _NP_.
+
+## Instancias positivas en 3-SAT se reducen a instancias positivas en IP
+- Si una instancia de 3-SAT es positiva, es porque existe una asignación de cada variable $x$ que satisface todas las cláusulas.
+- Por cada variable $x$ en 3-SAT, hay dos variables $x$ y $\overline{x}$ = 0 en IP.
+- Si $x$ es asignada a falso en 3-SAT, considere $x$ = 0 y $\overline{x}$ = 1 en IP.
+- Dada una cláusula $C_i = (l_{i1} \vee l_{i2} \vee l_{i3})$ en la instancia de 3_SAT, si la asignación satisface $C_i$, entonces también se satisface la desigualdad $l_1 + l_2 + l_3 \geq 1$.
+
+## Instancias negativas en 3-SAT se reducen a instancias negativas en IP
+- Si una instancia 3-SAT es negativa, es porque en cada asignación de verdad de cada variable $x$ al menos una cláusula queda sin satisfacer.
+- Si esa cláusula es $C_i = (l_{i1} \vee l_{i2} \vee l_{i3})$ en la instancia de 3SAT, entonces la asignación correspondiente en IP tampoco satisface la desigualdad $l_1 + l_2 + l_3 \geq 1$.
+- Por lo tanto no existe solución para la instancia en IP, o sea que también es una instancia negativa.
+
+## Complejidad de la reducción
+- Si se tienen $n$ variables en SAT, se crean $2n$ variables y $6n$ desigualdades en IP.
+- Si se tienen $m$ clausulas en SAT, se crean $m$ desigualdades en IP.
+
+Se demostró que IP es NP. También se mostró que IP es NP-Hard a través de una reducción de SAT. Adicionalmente la reducción es correcta como se evidenció en cada caso y se puede realizar un tiempo polinomial, luego se concluye que IP es NPC.
+
+## Aclaraciones sobre la reducción
+- La reducción preserva la estructura del problema. Note que la reducción no resuelve el problema, simplemente lo pone en un formato diferente.
+- Las posibles instancias resultantes de IP son un pequeño subconjunto de las posibles instancias. Dado que algunas de ellas son duras, el problema en general es duro.
+- La transformación captura la esencia del por qué IP es duro - no tiene que ver con grandes coeficientes o con grandes rangos en los dominios de las variables - la restricción 0-1 es suficiente.
