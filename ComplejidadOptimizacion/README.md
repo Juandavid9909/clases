@@ -86,7 +86,7 @@ Es una colección de C cláusulas en forma normal conjuntiva (FNC) donde cada cl
 - Se procede a realizar una reducción desde SAT. Nótese que 3SAT es un problema más restringido que SAT, y se debe describir un algoritmo que transforme cada instancia de SAT a 3SAT en tiempo polinomial SAT $\prec_p$ 3SAT.
 - Transformar cada cláusula de una instancia de SAT en un conjunto de cláusulas de 3 - SAT (lógicamente equivalentes).
 
-## Demostración de NPC de programación entera (IP)
+# Demostración de NPC de programación entera (IP)
 - **Instancia:** Un conjunto $v$ de variables enteras, un conjunto de desigualdades sobre las variables, una función $f(v)$ para maximizar y un entero $B$.
 
 **Ejemplo programación entera:**
@@ -133,3 +133,27 @@ Se demostró que IP es NP. También se mostró que IP es NP-Hard a través de un
 - La reducción preserva la estructura del problema. Note que la reducción no resuelve el problema, simplemente lo pone en un formato diferente.
 - Las posibles instancias resultantes de IP son un pequeño subconjunto de las posibles instancias. Dado que algunas de ellas son duras, el problema en general es duro.
 - La transformación captura la esencia del por qué IP es duro - no tiene que ver con grandes coeficientes o con grandes rangos en los dominios de las variables - la restricción 0-1 es suficiente.
+
+# Demostración de NPC de Vertex Cover
+
+### Definición
+Una instancia es un grafo $G = (V, E)$ y un entero $k \leq |V|$.
+
+### Pregunta
+¿Existe un subconjunto de a lo sumo $k$ vértices, donde cada arista $e \in E$ tiene al menos uno de los vértices en el subconjunto?
+
+- **Entrada:** Un grafo no dirigido $G = (V, E)$ y una constante $k \leq 	|V|$.
+- **Salida:** 1 si existe un subconjunto $V'$ de $V$ tal que $|V'|$.
+
+## ¿Está VC en NP?
+Dada una instancia positiva de VC y el certificado $V'$, sólo se debe verificar que cada arista tenga un vértice en $V'$ y que $|V'| \leq k$. Esto se puede hacer en tiempo $O(m |V'| + |V|)$ donde $m$ es el número de aristas.
+
+Dada una instancia negativa de $VC$ ningún certificado puede hacer que el algoritmo verifique la instancia (o falla porque no cubre o falla por el tamaño), y por tanto VC $\in$ NP.
+
+## Definiendo la reducción
+- **Idea 1:** Simular cada variable booleana $X$ de 3-SAT con un par de nodos de un grafo representando los literales $x$ y $-x$. En un VC del grafo, debe quedar siempre uno de los dos nodos y nunca los dos, de manera que esto represente una asignación de verdad. Por lo menos $n$ vértices se necesitan para cubrir todas las aristas.
+- **Idea 2:** Simular cada cláusula de 3-SAT con un grafo completo de 3 nodos (uno por literal).
+- **Idea 3:** Conectar cada grafo asociado a una cláusula con los literales correspondientes asociados a la asignación de verdad.
+
+## Procedimiento de reducción
+Dada una instancia 3-SAT con $n$ variables y $c$ cláusulas, construimos un grafo $G = (V, E)$ aplicando las ideas 1, 2 y 3.

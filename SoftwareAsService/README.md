@@ -83,3 +83,37 @@ Se pueden replicar, tener balanceadores de carga de solicitudes HTTP, un claro e
 - Alta disponibilidad no es equivalente a un plan de contingencia.
 - La alta disponibilidad tiene un costo, tan alto como tan exigente y crítico sea el servicio implicado.
 - El balanceo de carga permite optimizar el uso de recursos de hardware.
+
+# Proyecto
+
+## Parte 1
+### Base de datos maestro-esclavo
+Primero que todo es necesario crear una base de datos en el servidor que se encargará de ejecutar el rol maestro, hecho esto creamos una tabla con un registro. Finalizado este proceso debemos irnos a la pantalla principal de phpMyAdmin, seleccionar replicación y dar en configurar en la opción de maestro, seleccionamos si queremos hacer la replicación sólo a una base de datos o hacerla a todas ignorando una en específico, seleccionamos nuestra base de datos maestro y copiamos las configuraciones que nos indica XAMPP, esto para modificar el archivo my.cnf y pegamos dichas instrucciones.
+
+El siguiente paso es crear un usuario, para ello regresamos a la pantalla de replicación, y agregamos un usuario con el siguiente comando:
+
+```
+CREATE USER 'nombre'@'IP esclavo' IDENTIFIED BY 'password';
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'nombre'@'IP esclavo' IDENTIFIED BY 'password';
+```
+
+Ahora tendremos que darle las instrucciones para que la tabla replique los datos completamente en la tabla del esclavo.
+
+```
+USE bdMaestro;
+FLUSH TABLES WITH READ LOCK;
+```
+
+Exportamos las tablas de nuestra base de datos maestro, para esto simplemente damos en exportar y continuar. A partir de este momento empezaremos a trabajar en nuestro servidor esclavo; como primer paso debemos importar el SQL que exportamos del servidor maestro. Iremos nuevamente a la opción replicación y en este momento configuraremos la replicación esclava, para ello simplemente damos clic en configurar, al mismo tiempo en el Control Panel damos en config (sección de MySQL) y abrimos my.ini, comentamos la línea que dice ```server-id = 1``` en la sección maestro y descomentamos la línea que dice ```server-id = 2``` en la sección esclavo agregando también el comando ```binlog_do_db = replica```.
+
+Ahora ingresamos las credenciales del servidor maestro con el siguiente comando:
+```
+CHANGE MASTER TO
+	MASTER_HOST = 'IP maestro',
+	MASTER_USER = 'usuario maestro',
+	MASTER_PASSWORD = 'password usuario maestro',
+	MASTER_LOG_FILE = 'archivo mysql-bin que retorna cuando vemos el estado del maestro',
+	MASTER_LOG_POS = (pos que retorna cuando vemos el estado del maestro (sin parentesis));
+```
+
+En este punto habremos creado el hilo SQL esclavo pero no se estará ejecutando hasta este momento, por lo que debemos ejecutar la instrucción ```START SLAVE``` o también desde la pantalla de replicación dar clic en controlar esclavo y dar en inicio completo.
