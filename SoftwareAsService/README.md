@@ -84,6 +84,104 @@ Se pueden replicar, tener balanceadores de carga de solicitudes HTTP, un claro e
 - La alta disponibilidad tiene un costo, tan alto como tan exigente y crítico sea el servicio implicado.
 - El balanceo de carga permite optimizar el uso de recursos de hardware.
 
+# Microservicios
+
+## Arquitectura basada en capas
+Es la distribución de roles y tareas de forma jerarquizada donde se proporciona una división de las responsabilidades para cada rol. Un ejemplo sería en una ABC sería el siguiente:
+- **Capa de presentación:** Sólo se preocupa por presentar la información de forma agradable al usuario.
+- **Capa de negocio:** Sólo se encarga de aplicar todas las reglas de negocio y validaciones.
+- **Capa de datos:** Se encarga de comunicarse a la base de datos, crear las instrucciones SQL y retornarlos en un formato independiente a la base de datos.
+
+### Principios fundamentales
+- Abstracción.
+- Funcionalidad claramente definida.
+- Reutilizable.
+- Encapsulamiento.
+- Alta cohesión.
+- Desacople.
+
+### Ventajas
+- Mejoras en las posibilidades de mantenimiento.
+- Flexibilidad.
+- Escalabilidad.
+
+### Desventajas
+- Performance por las comunicaciones de red.
+- Anclado a un Stack tecnológico debido a que en general todas las capas de las aplicaciones son construidas con la misma tecnología.
+- Complejidad de despliegue ya que es necesario hacer un despliegue de abajo hacia arriba, lo que crea una dependencia.
+- Tolerancia a los fallos, si una capa falla todas las demás fallarán en cascada.
+
+## Introducción a los microservicios
+Son un tipo de arquitectura que sirve para diseñar aplicaciones. Lo que distingue esta arquitectura de los enfoques tradicionales es la forma en que desglosa una aplicación en sus funciones principales. Cada función se denomina servicio y se puede diseñar e implementar de forma independiente. Esto permite que funcionen separados (y también, fallen por separado) sin afectar a los demás.
+
+### Ventajas
+- **Modularidad:** Al tratarse de servicios autónomos se pueden desarrollar de forma independiente
+- **Escalabilidad:** Se puede escalar cada parte horizontalmente con un procesamiento más intensivo.
+- **Versatilidad:** Se pueden usar varios lenguajes de programación por lo que se puede optar a la metodología más adecuada.
+- **Rapidez de actuación:** El reducido tamaño de los servicios disminuye el costo de desarrollo, además facilita el despliegue.
+- **Mantenimiento simple y barato:** Debido a que se hacen mejoras en un sólo módulo, el mantenimiento es más sencillo.
+- **Agilidad:** Se pueden usar habilidades típicas desarrolladas por terceros.
+
+### Desventajas
+- **Alto consumo de memoria:** Cada servicio tiene sus recursos y bases de datos.
+- **Inversión de tiempo inicial:** En la creación se requiere más tiempo para implementar y comunicar los servicios.
+- **Complejidad en la gestión:** Al tener muchos servicios va a ser difícil gestionarlos.
+- **Perfil de desarrollador:** Requieren desarrolladores con un nivel alto de experiencia, además de la solución de latencia de red, etc.
+- **No uniformidad:** Puede que no se gestionen correctamente y se produzca un diseño de arquitectura poco eficiente.
+- **Dificultad en la realización de pruebas:** Se deben realizar más pruebas por mayor cantidad de servicios.
+- **Costo de implantación alto:** Debido a infraestructura y pruebas unitarias los costos de implantación pueden ser muy altos.
+
+## Tecnologías que usan microservicios
+### Docker
+Desde un punto de vista de desarrollo y despliegue, los contenedores pueden hacer todo lo que hacen las máquinas virtuales, pero mejor.
+
+#### Ventajas
+- Se obtiene una mayor consistencia entre los entornos de prueba y los entornos de producción.
+- Se obtiene mayor modularidad.
+
+### Kubernetes
+Es una plataforma portable y extensible de código abierto para administrar cargas de trabajo y servicios.
+
+#### Ventajas
+- Ágil creación y despliegue de aplicaciones.
+- Desarrollo, integración y despliegue continuo.
+- Observabilidad.
+- Consistencia entre los entornos de desarrollo, pruebas y producción.
+- Portabilidad entre nubes y distribuciones.
+- Administración centrada en la aplicación.
+- Microservicios distribuidos, elásticos, liberados y débilmente acoplados.
+- Aislamiento de recursos.
+
+#### Desventajas
+- La seguridad no es muy eficaz.
+- Puede ser muy pesado para los desarrolladores individuales.
+
+### Spring framework
+Es un marco de trabajo compuesto de herramientas y utilidades ideales para la creación de aplicaciones web mediante el lenguaje de programación Java.
+
+#### Ventajas
+- Versátil.
+- Desarrollo web sobre REST API.
+- Alta cohesión.
+- Flexible y escalable.
+
+#### Desventajas
+- Para cada servicio que se tenga se debe modificar un XML.
+- No se puede evaluar si un objeto ha sido bien eyectado.
+- No es ligero y no es recomendable para aplicaciones en tiempo real o móviles.
+
+### Node.js
+Es un entorno de ejecución de código abierto para JavaScript basado en el motor Chrome V8 para navegadores Chromium. Node.js permite que sus programas escritos en JavaScript se ejecuten en el servidor.
+
+#### Ventajas
+- JavaScript en un servidor.
+- Bueno para microservicios.
+- Apoyo y comunidad.
+- Paquetes.
+
+#### Desventajas
+- Cuello de botella de la CPU.
+
 # Proyecto
 
 ## Parte 1
