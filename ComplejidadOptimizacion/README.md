@@ -150,10 +150,50 @@ Dada una instancia positiva de VC y el certificado $V'$, sólo se debe verificar
 
 Dada una instancia negativa de $VC$ ningún certificado puede hacer que el algoritmo verifique la instancia (o falla porque no cubre o falla por el tamaño), y por tanto VC $\in$ NP.
 
-## Definiendo la reducción
+## ¿Es VC NP-Hard?
+### Definiendo la reducción
 - **Idea 1:** Simular cada variable booleana $X$ de 3-SAT con un par de nodos de un grafo representando los literales $x$ y $-x$. En un VC del grafo, debe quedar siempre uno de los dos nodos y nunca los dos, de manera que esto represente una asignación de verdad. Por lo menos $n$ vértices se necesitan para cubrir todas las aristas.
 - **Idea 2:** Simular cada cláusula de 3-SAT con un grafo completo de 3 nodos (uno por literal).
 - **Idea 3:** Conectar cada grafo asociado a una cláusula con los literales correspondientes asociados a la asignación de verdad.
 
 ## Procedimiento de reducción
 Dada una instancia 3-SAT con $n$ variables y $c$ cláusulas, construimos un grafo $G = (V, E)$ aplicando las ideas 1, 2 y 3.
+
+# Demostración de NPC de SubsetSum
+
+## ¿Está SS en NP?
+Dada una instancia positiva de $SS$ y el certificado $S'$, sólo se debe verificar que $S' \subseteq S$ y que $\sum_{s \in S'} = t$. Esto se puede hacer en tiempo $O(|S'||S'|+S'|)$. Dada una instancia negativa de VC ningún certificado puede hacer que el algoritmo verifique la instancia (o falla porque no es subconjunto o falla porque la suma no da), por tanto $SS \in NP$. Para este caso, el certificado es el conjunto $S'$ de números de $S$ candidato a sumar $t$.
+
+## ¿Es SS NP-Hard?
+### Definiendo la reducción
+- **Idea 1:** Representar el grafo original como una matriz de incidencia:
+	- **Número de 1's en cada fila:** Grado del vértice.
+	- **Número de 1's en cada columna:** 2.
+- **Idea 2:** Un cubrimiento debe alumbrar al menos un 1 en cada columna.
+- **Idea 3:** Añadir una fila por arista, de manera que un cubrimiento se pueda completar para tener dos 1's por columna. Y la primera columna determina los vértices del cubrimiento.
+- **Idea 4:** Verlo como un problema de suma de números en base 4.
+
+### Procedimiento de reducción
+Dada una instancia de $VC$ un grafo $G = (V, E)$ representado por la matriz de incidencia $M$ tal que $M[v, e] = 1$ si $v$ es incidente a $e$, y 0 si no, y $K$ el tamaño del cubrimiento deseado, aplicamos las ideas 1, 2, 3 y 4 para crear una instancia de SubsetSum:
+- Por cada vértice $v \in V$ creamos $s_v \in S$, tal que: $$s_v = 4^{|E|} + \sum_{j = 0}^{|E| - 1}M[v, e_j] * 4^j$$
+- Por cada arista $e_j \in S$ tal que: $$s_{e_j} = 4^j$$
+- $$t = k * 4^{|E|} + \sum_{j = 0}^{|E| - 1}(2 * 4^j)$$
+
+### Instancias positivas en VC se reducen a instancias positivas en SubsetSum
+- Si una instancia de VC es positiva, es porque existe un cubrimiento $V'$ de tamaño $k$. Vamos a mostrar que entonces la instancia reducida de SubsetSum, $(S, t)$ es positiva:
+	- Para cada $v \in V'$, $s_v \in S'$.
+	- Para cada arista $e_j = (u, v) \in E$.
+		- Si $u \notin V'$, $s_{e_j} \in S'$.
+		- Si $v \notin V'$, $s_{e_j} \in S'$.
+
+### Instancias negativas en VC se reducen a instancias negativas en SubsetSum
+- Si una instancia de VC es negativa, es porque no existe un cubrimiento $V'$ de tamaño $K$. Vamos a mostrar que entonces la instancia reducida de SubsetSum, $(S, t)$ es negativa:
+- Por contradicción, suponga que existe $S' \subseteq S$ tal que $\sum_{s \in S'} = t$.
+- Sea $V' = {v \in V : s_v \in S'}$.
+	- Como $\sum_{s \in S'} = t$, por construcción, $|\{s_v \in S'\}| = K$. Si hay menos o más la suma no daría $t$.
+	- $V'$ cubre $G$ porque sino, la suma no daría $t$.
+
+### Complejidad de la reducción
+Evidentemente, la reducción se hace en tiempo polinomial:
+- Si se tienen $n$ vértices y $m$ aristas en la instancia VC, se crea un conjunto $S$ con $n + m$ números y un número $t$.
+- Por tanto la reducción toma tiempo polinomial en el tamaño de la entrada de $VC$.
