@@ -197,3 +197,37 @@ Dada una instancia de $VC$ un grafo $G = (V, E)$ representado por la matriz de i
 Evidentemente, la reducción se hace en tiempo polinomial:
 - Si se tienen $n$ vértices y $m$ aristas en la instancia VC, se crea un conjunto $S$ con $n + m$ números y un número $t$.
 - Por tanto la reducción toma tiempo polinomial en el tamaño de la entrada de $VC$.
+
+# Optimización
+
+## Conceptos generales
+Optimizar es el proceso de maximizar o minimizar una función objetivo deseada mientras se satisface un conjunto de restricciones predominantes.
+
+La naturaleza tiene abundantes ejemplos donde se busca un sistema óptimo:
+- Una gota de agua en gravedad cero es una esfera perfecta, la cual es una figura geométrica de menor área de superficie para un volumen dado.
+- La estructura de los paneles de abejas es uno de los arreglos más compactos. Los alvéolos tiene forma hexagonal, forma estable y compacta de utilización del espacio.
+- Mutación genética.
+- Definir un programa de producción que maximice los ingresos totales.
+- Determinar la secuencia de tipos de productos a fabricar tal que se minimice el tiempo total de la producción.
+- Determinar la ubicación de sucursales que optimice las ventas.
+- Determinar la ubicación y dosificación de rayos X a aplicar para maximizar el efecto de un tratamiento de cáncer con el mínimo daño en tejidos sanos.
+
+## Pasos para resolver un problema de optimización
+- Formulación del problema.
+- Construcción del modelo matemático que representa el sistema o problema bajo estudio.
+- Solución a partir del modelo (algoritmos - implementación del modelo bajo un lenguaje de modelado para problemas de optimización).
+- Verificación del modelo y la solución.
+- Derivación de la solución del problema (decisión a tomar).
+
+## Programación no-lineal (NLP)
+La mayoría de problemas de optimización pueden ser expresados como problemas de mínimos (o máximos) de una función sujeta a restricciones de igualdades y desigualdades, lo cual se conoce usualmente como el problema de programación (planificación) no-lineal (NLP).
+
+- **Modelo:** Descripción esquemática de un sistema, teoría, o fenómeno a partir de propiedades conocidas o inferidas y que puede ser utilizado para estudiar sus características.
+- **Modelo matemático:** Modelos abstractos que describen la relación matemática.
+
+## Existencia de mínimos y máximos (teorema de Wierstraas)
+### Teorema
+Si $f$ es una función continua, definida sobre un conjunto cerrado y acotado $\Omega \subseteq D(f)$. Entonces existen puntos $x^*$ y $x^{**}$ donde $f$ toma sus valores máximo y mínimo.
+
+# MiniZinc
+Es un lenguaje de modelado para problemas de restricciones (satisfacción y optimización) que ha tomado fuerza en los últimos años.
