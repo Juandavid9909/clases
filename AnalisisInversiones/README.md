@@ -91,3 +91,32 @@ $$I_t = P * i$$
 
 - **Interés compuesto:** El interés para cada período se calcula sobre el monto inicial más el monto total del interés acumulado en todos los períodos anteriores:
 $$I_t = (P + \sum_{j=1}^{j=t-1}I_j) * i$$
+
+# Equivalencia entre anualidad, presente y futuro
+
+## Fórmulas
+Recordemos que:
+- **i:** Interés.
+- **n:** Período de tiempo.
+- **F:** Valor futuro.
+- **P:** Valor presente.
+- **A:** Magnitud/anualidad.
+
+### Calcular presente teniendo valor futuro
+$$P =  \frac{F}{(1 + i)^n}$$
+
+### Calcular futuro teniendo valor presente
+$$F = \frac{P}{(1 + i)^n}$$
+
+### Teniendo la anualidad calcular un futuro
+$$Fi = A(1 + i)^n - A$$
+$$F = \frac{A((1 + i)^n - 1)}{i}$$
+
+### Calcular anualidad teniendo futuro
+$$A = \frac{Fi}{(1 + i)^n - 1}$$
+
+### Calcular presente teniendo anualidad
+$$P = A \frac{(1 + i)^n - 1}{i (1 + i)^n}$$
+
+### Calcular anualidad teniendo presente
+$$A = P \frac{i (1 + i)^n}{(1 + i)^n - 1}$$
