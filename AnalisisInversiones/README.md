@@ -63,6 +63,12 @@ Aumento del nivel general de los precios -> Var IPC (índice de precios al consu
 ## Deflación
 Los precios bajan debido a algún impacto como puede ser el COVID-19.
 
+## Devaluación
+Es la pérdida de valor de una moneda con respecto a otra moneda.
+
+## Revaluación
+Es el aumento de valor de una moneda con respecto a otra moneda.
+
 ## Tasa de cambio
 ### Mercados cambiarios
 Dólares que llegan y se van del país producto de las exportaciones
@@ -102,6 +108,25 @@ Recordemos que:
 - **P:** Valor presente.
 - **A:** Magnitud/anualidad.
 
+# Equivalencia entre intereses
+
+|       Interés         |       n    |$F = P(1 + i)^n$|
+|----------------|----------------|-------------------------------|
+| 1% mensual | 12 | $1(F/P; 1\%; 12)$ |
+| 3% trimestral | 4 | $1(F/P; 3\%; 4)$ |
+| 6% semestral | 2 | $1(F/P; 6\%; 2)$ |
+| 12% anual | 1 | $1(F/P; 12\%; 1)$ |
+
+- **Tasa nominal (r):** Es anual compuesta mensualmente siendo el año el período de referencia y el mes el período de pago.
+- **Tasa periódica:** Calcular tasa periódica teniendo tasa nominal $\frac{r}{m} = i$.
+- **Tasa efectiva:** Calcular tasa efectiva teniendo tasa periódica $E = (1 + i)^m - 1$ - $i_{pc} = (1 + i_{pl})^{\frac{1}{m}} - 1$.
+
+### Calcular tasa de incremento de un gradiente geométrico
+$$s = \frac{periodoBaseCon_i}{periodoBaseSin_i} - 1$$
+
+Por lo tanto el valor del siguiente período debería ser equivalente a:
+$$periodoAnterior_i * (1 + s)$$
+
 ### Calcular presente teniendo valor futuro
 $$P =  \frac{F}{(1 + i)^n}$$
 
@@ -120,3 +145,19 @@ $$P = A \frac{(1 + i)^n - 1}{i (1 + i)^n}$$
 
 ### Calcular anualidad teniendo presente
 $$A = P \frac{i (1 + i)^n}{(1 + i)^n - 1}$$
+
+### Calcular anualidad teniendo gradiente aritmético
+$$A = B \pm G * (\frac{1}{i} - \frac{n}{(1 + i)^n - 1})$$
+
+### Saber gradiente teniendo su base
+$$G = \frac{gradienteFinal - base}{numGradiente}$$
+
+### Calcular presente teniendo gradiente geométrico
+$$P = T * (\frac{(\frac{1 + s}{1 + i})^n - 1}{s - i})$$
+$$Si => s = i -> P = \frac{nT}{1 + i}$$
+
+### Interés vencido vs interés anticipado (periódico)
+$$i_{vencido} = \frac{i_{anticipado}}{1 - i_{anticipado}}$$
+
+### Interés múltiple
+$$(1 + i_{u\$})(1 + revaluacióndolar) = (1 + i_\$)$$

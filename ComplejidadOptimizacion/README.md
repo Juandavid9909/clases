@@ -77,6 +77,10 @@ El problema consiste en un conjunto V de n variables booleanas ```v1, v2, v3...v
 Es una colección de C cláusulas en forma normal conjuntiva (FNC) donde cada cláusula contiene exactamente 3 literales. Para probar que 3SAT es NPC:
 - Probar que 3SAT $\in$ NP.
 - Probar que 3SAT $\in$ NP-Hard.
+	- Seleccionar un problema NPC $A$ conocido.
+	- Describir un algoritmo que transforme cada instancia de $A$ a una instancia de 3SAT. Esto es $A \prec_p$ 3SAT.
+	- Probar que el algoritmo anterior corre en tiempo polinomial.
+	- Probar que el algoritmo es correcto.
 
 ### 3SAT $\in$ NP
 - Dada una instancia positiva de 3SAT y el certificado, sólo se debe chequear cada cláusula para evaluar que se satisfaga. La verificación se puede hacer en tiempo polinomial $3*|C|$ equivalente a $O(|C|)$.
