@@ -102,6 +102,12 @@ Recordemos que:
 - **P:** Valor presente.
 - **A:** Magnitud/anualidad.
 
+### Calcular tasa de incremento de un gradiente geométrico
+$$s = \frac{periodoBaseCon_i}{periodoBaseSin_i} - 1$$
+
+Por lo tanto el valor del siguiente período debería ser equivalente a:
+$$periodoAnterior_i * (1 + s)$$
+
 ### Calcular presente teniendo valor futuro
 $$P =  \frac{F}{(1 + i)^n}$$
 
@@ -120,3 +126,13 @@ $$P = A \frac{(1 + i)^n - 1}{i (1 + i)^n}$$
 
 ### Calcular anualidad teniendo presente
 $$A = P \frac{i (1 + i)^n}{(1 + i)^n - 1}$$
+
+### Calcular anualidad teniendo gradiente aritmético
+$$A = B \pm G * (\frac{1}{i} - \frac{n}{(1 + i)^n - 1})$$
+
+### Saber gradiente teniendo su base
+$$G = \frac{gradienteFinal - base}{numGradiente}$$
+
+### Calcular presente teniendo gradiente geométrico
+$$P = T * (\frac{(\frac{1 + s}{1 + i})^n - 1}{s - i})$$
+$$Si => s = i -> P = \frac{nT}{1 + i}$$
